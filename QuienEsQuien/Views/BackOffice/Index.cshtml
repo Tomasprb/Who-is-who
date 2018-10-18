@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "MenuBackoffice";
+}
+
+
+
+<head>
+    <link href="~/Styles/Estilos1.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/Cosa.css" rel="stylesheet" />
+</head>
+<body class="w3-black">
+    <input type="hidden" name="UserNow" value="@ViewBag.UserNow" />
+    <div class="w3-padding-large" id="main">
+        <h1 align="center">Menu de administrador</h1> <br />
+
+        <div>
+            <p><a href="@Url.Action("ABMUsuarios", "BackOffice")" class="boton_personalizado">ABM Usuarios &raquo;</a></p> <br /> <br />
+            <p><a href="@Url.Action("ABMCategorias", "BackOffice")" class="boton_personalizado">ABM Categorias Por Personaje &raquo;</a></p> <br /> <br />
+            <p><a href="@Url.Action("ABMPersonajes", "BackOffice")" class="boton_personalizado">ABM Personajes &raquo;</a></p> <br /> <br />
+            <h5 class="texto_1" style="position:absolute;bottom:0px;right:20px">Bienvenido @Session["NombreNow"]</h5>
+        </div>
+    </div>
+</body>
