@@ -1,0 +1,16 @@
+﻿@using QuienEsQuien.Models
+@model Usuarios
+@{
+    ViewBag.Title = "LoginParcial";
+}
+
+<h2>Login</h2>
+
+@ViewBag.NoUserLogin
+
+<form action="@Url.Action("Login", "Home")" method="post">
+    Nombre: @Html.TextBoxFor(x => x.Nombre, new { type = "string" }) <br />
+    Contraseña: @Html.PasswordFor(x => x.Contraseña, new { type = "string" }) <br /> <br />
+
+    <button>Siguiente</button>
+</form>
