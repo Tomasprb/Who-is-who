@@ -26,22 +26,89 @@ namespace QuienEsQuien.Controllers
             }
         }
 
-        public ActionResult AltaCategorias()
-        {
-            
-            return View();
-        }
+
         public ActionResult Categorias()
         {
-            List<Categorias> Categoria = new List<Categorias>();
-            Conexion MiConexion = new Conexion();
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                List<Categorias> Categoria = new List<Categorias>();
+                Conexion MiConexion = new Conexion();
 
-            Categoria = MiConexion.ListarCategorias();
+                Categoria = MiConexion.ListarCategorias();
 
-            ViewBag.Lista = Categoria;
-            return View("ABM_Categorias");
+                ViewBag.Lista = Categoria;
+                return View("ABM_Categorias");
 
-            
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public ActionResult EdicionCategoria(string Accion, int ID = 0)
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                Conexion MiConexion1 = new Conexion();
+                ViewBag.Accion = Accion;
+                if (Accion == "Modificar")
+                {
+                    Categorias C = MiConexion1.ObtenerCategoria(ID);
+                    return View("FormTrabajador", C);
+                }
+                if (Accion == "Ver")
+                {
+                    Categorias C = MiConexion1.ObtenerCategoria(ID);
+                    return View("FormTrabajador", C);
+                }
+                if (Accion == "Eliminar")
+                {
+
+                    MiConexion1.EliminarTrabajador(ID);
+                    List<Categorias> Categoria = new List<Categorias>();
+                    Categoria = MiConexion1.ListarCategorias();
+
+                    ViewBag.Lista = Categoria;
+                    return View("ABM");
+                }
+                if (Accion == "Insertar")
+                {
+                    return View("FormTrabajador");
+                }
+
+                return View("FormTrabajador");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult CosasATrabajador(Categorias x, string Accion)
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                Conexion MiConexion2 = new Conexion();
+                if (Accion == "Insertar")
+                {
+                    MiConexion2.InsertarCategoria(x);
+                }
+                if (Accion == "Modificar")
+                {
+                    MiConexion2.ModificarCategoria(x);
+                }
+                List<Categorias> MiCateforia = new List<Categorias>();
+                MiCateforia = MiConexion2.ListarCategorias();
+
+                ViewBag.Lista = MiCateforia;
+                return View("ABM");
+
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
-}
+    }

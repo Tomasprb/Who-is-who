@@ -294,6 +294,7 @@
     <Content Include="Views\BackOffice\BajaCategorias.cshtml" />
     <Content Include="Views\BackOffice\ModificacionCategorias.cshtml" />
     <Content Include="Views\BackOffice\ABM_Categorias.cshtml" />
+    <Content Include="Views\BackOffice\FormTrabajador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
