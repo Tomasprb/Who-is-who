@@ -35,26 +35,24 @@
             <image src="~/Content/Layoutbuttons/infopic.png" class="fa w3-xxlarge" style="width:40px"></image>
             <p>ABOUT</p>
         </a>
-        <div style="position:absolute;bottom:10px">
-            @if (Session["NombreNow"] == null)
-            {
-                <a href="@Url.Action("LoginParcial", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-                    <image src="~/Content/Layoutbuttons/loginpic.png" class="fa w3-xxlarge" style="width:40px"></image>
-                    <p>LOGIN</p>
-                </a>
-                <a href="@Url.Action("RegisterParcial", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-                    <image src="~/Content/Layoutbuttons/registerpic.png" class="fa w3-xxlarge" style="width:40px"></image>
-                    <p>REGISTER</p>
-                </a>
-            }
-            else
-            {
-                <a href="@Url.Action("Logout", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-                    <image src="~/Content/Layoutbuttons/logoutpic.png" class="fa w3-xxlarge" style="width:40px"></image>
-                    <p>LOGOUT</p>
-                </a>
-            }
-        </div>
+        @if (Session["NombreNow"] == null)
+        {
+            <a style="position:absolute;bottom:110px" href="@Url.Action("LoginParcial", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <image src="~/Content/Layoutbuttons/loginpic.png" class="fa w3-xxlarge" style="width:40px"></image>
+                <p>LOGIN</p>
+            </a>
+            <a style="position:absolute;bottom:10px" href="@Url.Action("RegisterParcial", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <image src="~/Content/Layoutbuttons/registerpic.png" class="fa w3-xxlarge" style="width:40px"></image>
+                <p>REGISTER</p>
+            </a>
+        }
+        else
+        {
+            <a style="position:absolute;bottom:10px" href="@Url.Action("Logout", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <image src="~/Content/Layoutbuttons/logoutpic.png" class="fa w3-xxlarge" style="width:40px"></image>
+                <p>LOGOUT</p>
+            </a>
+        }
     </nav>
 
     @RenderBody()

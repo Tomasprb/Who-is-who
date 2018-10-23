@@ -3,8 +3,6 @@
     ViewBag.Title = "MenuBackoffice";
 }
 
-
-
 <head>
     <link href="~/Styles/Estilos1.css" rel="stylesheet" />
     <meta charset="UTF-8">
@@ -13,17 +11,30 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/Cosa.css" rel="stylesheet" />
+    <style>
+        ul {
+            display: inline-block;
+            vertical-align: top;
+            padding-left: 0;
+            vertical-align: top;
+            padding-left: 170px;
+        }
+        li{
+            list-style: none
+        }
+    </style>
 </head>
 <body class="w3-black">
-    <input type="hidden" name="UserNow" value="@ViewBag.UserNow" />
     <div class="w3-padding-large" id="main">
         <h1 align="center">Menu de administrador</h1> <br />
-
-        <div>
-            <p><a href="@Url.Action("ABMUsuarios", "BackOffice")" class="boton_personalizado">ABM Usuarios &raquo;</a></p> <br /> <br />
-            <p><a href="@Url.Action("ABMCategorias", "BackOffice")" class="boton_personalizado">ABM Categorias Por Personaje &raquo;</a></p> <br /> <br />
-            <p><a href="@Url.Action("ABMPersonajes", "BackOffice")" class="boton_personalizado">ABM Personajes &raquo;</a></p> <br /> <br />
-            <h5 class="texto_1" style="position:absolute;bottom:0px;right:20px">Bienvenido @Session["NombreNow"]</h5>
+        <div style="width:100%;margin-left:auto;margin-right:auto;margin-top:25px">
+            <ul >
+                <li style="text-align:center;font-size:20px"><b>Usuarios ▼</b></li>
+                <li><a class="link-abm" href="@Url.Action("Categorias", "BackOffice")">ABM Categorias</a></li>
+                <li><a class="link-abm" href="@Url.Action("BajaUsuarios", "BackOffice")">ABM Usuarios</a></li>
+                <li><a class="link-abm" href="@Url.Action("ModificacionUsuarios", "BackOffice")">ABM Personajes</a></li>
+            </ul>
+            
         </div>
     </div>
 </body>

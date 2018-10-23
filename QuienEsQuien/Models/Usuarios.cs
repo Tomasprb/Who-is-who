@@ -29,7 +29,7 @@ namespace QuienEsQuien.Models
             Puntaje = _Puntaje;
             Admin = _Admin;
         }
-
+        
         public int IdUsuario
         {
             get

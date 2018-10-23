@@ -11,6 +11,7 @@ namespace QuienesQuien.Models
     public class Conexion
     {
         private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
+        // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
 
         public SqlConnection Conectar()
         {
@@ -50,20 +51,109 @@ namespace QuienesQuien.Models
                 x.Admin = false;
             }
 
+            Conexion.Close();
+
             return x;
         }
 
-public int Register(string user, string pass)
-{
-    SqlConnection Conexion = Conectar();
-    SqlCommand Comando = Conexion.CreateCommand();
+        public int Register(string user, string pass)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand Comando = Conexion.CreateCommand();
 
-    Comando.CommandText = "sp_Registro";
-    Comando.CommandType = System.Data.CommandType.StoredProcedure;
-    Comando.Parameters.AddWithValue("@pNombre", user);
-    Comando.Parameters.AddWithValue("@pContraseña", pass);
-    int x = Comando.ExecuteNonQuery();
-    return x;
-}
+            Comando.CommandText = "sp_Registro";
+            Comando.CommandType = System.Data.CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@pNombre", user);
+            Comando.Parameters.AddWithValue("@pContraseña", pass);
+            int x = Comando.ExecuteNonQuery();
+
+            Conexion.Close();
+
+            return x;
+        }
+        ///ABM
+        public void InsertarCategoria(Categorias C)
+        {
+
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "sp_AltaCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pNombre", C.Nombre);
+            consulta.ExecuteNonQuery();
+            Desconectar(Conexion);
+
+        }
+        public List<Categorias> ListarCategorias()
+        {
+            List<Categorias> Categoria = new List<Categorias>();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ListarCategorias";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                int IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
+                string NombreCat = (dataReader["Nombre"].ToString());
+                
+                Categorias C = new Categorias (IdCategoria, NombreCat);
+                Categoria.Add(C);
+            }
+            Desconectar(conexion);
+            return Categoria;
+        }
+        public Categorias ObtenerCategoria (int IdCategoria)
+        {
+            Categorias UnaCategoria = new Categorias();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_SeleccionarCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", IdCategoria);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            if (dataReader.Read())
+            {
+                UnaCategoria.IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
+                UnaCategoria.Nombre = (dataReader["Nombre"].ToString());
+                
+            }
+
+            Desconectar(conexion);
+            return UnaCategoria;
+        }
+        public void ModificarCategoria(Categorias C)
+        {
+
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificacionCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@@pID", C.IdCategoria);
+            consulta.Parameters.AddWithValue("@pNombre", C.Nombre);
+            consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+
+        }
+
+        public void EliminarTrabajador(int t)
+        {
+
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_BajaCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", t);
+            consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+
+        }
+
+
+
+
+
+
+
     }
 }
