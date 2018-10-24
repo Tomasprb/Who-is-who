@@ -9,6 +9,7 @@ namespace QuienEsQuien.Models
     {
         private string _Nombre;
         private bool _Admin;
+     
 
         public Login(string Nombre, bool Admin)
         {
@@ -45,5 +46,8 @@ namespace QuienEsQuien.Models
                 _Admin = value;
             }
         }
+       
+
+
     }
 }

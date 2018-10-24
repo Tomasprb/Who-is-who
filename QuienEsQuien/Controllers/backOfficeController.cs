@@ -85,7 +85,7 @@ namespace QuienEsQuien.Controllers
             }
         }
 
-        public ActionResult CosasATrabajador (Categorias x, string Accion, int Id)
+        public ActionResult CosasATrabajador (Categorias x, string Accion, int Id = 0)
         {
             x.IdCategoria = Id;
             if (Convert.ToBoolean(Session["AdminNow"]) == true)

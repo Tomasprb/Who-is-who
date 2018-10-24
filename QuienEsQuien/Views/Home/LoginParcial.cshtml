@@ -19,7 +19,7 @@
         <form action="@Url.Action("Login", "Home")" method="get">
             @ViewBag.NoUserLogin <br /> <br />
             <div style="margin-bottom:10px">Nombre: <span style="margin-left:28px">@Html.TextBoxFor(x => x.Nombre, new { type = "string" })</span> </div>
-            <div>Contraseña: <span style="margin-left:5px">@Html.PasswordFor(x => x.Contraseña, new { type = "string" })</span> </div> <br />
+            <div>Contraseña: <span style="margin-left:5px">@Html.PasswordFor(x => x.Contraseña, new { type = "password" })</span> </div> <br />
             <button class="button black" style="margin-left:182px">Siguiente</button>
         </form>
 
