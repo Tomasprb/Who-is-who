@@ -129,7 +129,7 @@ namespace QuienesQuien.Models
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_ModificacionCategoria";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@@pID", C.IdCategoria);
+            consulta.Parameters.AddWithValue("@pID", C.IdCategoria);
             consulta.Parameters.AddWithValue("@pNombre", C.Nombre);
             consulta.ExecuteNonQuery();
             Desconectar(conexion);

@@ -54,6 +54,7 @@ namespace QuienEsQuien.Controllers
                 if (Accion == "Modificar")
                 {
                     Categorias C = MiConexion1.ObtenerCategoria(ID);
+                    ViewBag.Id = ID;
                     return View("FormTrabajador", C);
                 }
                 if (Accion == "Ver")
@@ -69,7 +70,7 @@ namespace QuienEsQuien.Controllers
                     Categoria = MiConexion1.ListarCategorias();
 
                     ViewBag.Lista = Categoria;
-                    return View("ABM");
+                    return View("ABM_Categorias");
                 }
                 if (Accion == "Insertar")
                 {
@@ -84,8 +85,9 @@ namespace QuienEsQuien.Controllers
             }
         }
 
-        public ActionResult CosasATrabajador(Categorias x, string Accion)
+        public ActionResult CosasATrabajador (Categorias x, string Accion, int Id)
         {
+            x.IdCategoria = Id;
             if (Convert.ToBoolean(Session["AdminNow"]) == true)
             {
                 Conexion MiConexion2 = new Conexion();
@@ -101,7 +103,7 @@ namespace QuienEsQuien.Controllers
                 MiCateforia = MiConexion2.ListarCategorias();
 
                 ViewBag.Lista = MiCateforia;
-                return View("ABM");
+                return View("ABM_Categorias");
 
 
             }
