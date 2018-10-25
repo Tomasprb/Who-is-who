@@ -25,7 +25,7 @@ namespace QuienEsQuien.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        // ABM CATEGORIAS
 
         public ActionResult Categorias()
         {
@@ -124,5 +124,86 @@ namespace QuienEsQuien.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        //ABM PERSONAJES
+
+        public ActionResult Personajes()
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                List<Personajes> ListaPersonajes = new List<Personajes>();
+                Conexion MiConexion = new Conexion();
+
+                ListaPersonajes = MiConexion.ListarPersonajes();
+
+                ViewBag.Lista = ListaPersonajes;
+                return View("ABM_Personajes");
+
+            }//ACA
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult EdicionPersonaje(string Accion, int ID = 0)
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                bool x = true;
+                Conexion MiConexion1 = new Conexion();
+                ViewBag.Accion = Accion;
+                if (Accion == "Modificar")
+                {
+                    Personajes C = MiConexion1.ObtenerPersonaje(ID);
+                    ViewBag.Id = ID;
+                    return View("FormPersonaje", C);
+                }
+                if (Accion == "Ver")
+                {
+                    Personajes C = MiConexion1.ObtenerPersonaje(ID);
+                    return View("FormPersonaje", C);
+                }
+                if (Accion == "Eliminar")
+                {
+                    List<Personajes> lista = MiConexion1.ListarPersonajes();
+                    foreach (Personajes miPersonaje in lista)
+                    {
+                        if (miPersonaje.IdPersonaje == ID)
+                        {
+                            ViewBag.BajaCategoria = "No se puede eliminar la categoría seleccionada porque uno o más personajes pertenecen a ella";
+                            x = false;
+                            List<Personajes> Personaje = new List<Personajes>();
+                            Personaje = MiConexion1.ListarPersonajes();
+                            ViewBag.Lista = Personaje;
+                        }
+                    }
+                    if (x == true)
+                    {
+                        MiConexion1.EliminarPersonaje(ID);
+                        List<Personajes> Personaje = new List<Personajes>();
+                        Personaje = MiConexion1.ListarPersonajes();
+                        ViewBag.Lista = Personaje;
+                    }
+                    return View("ABM_Personajes");
+                }
+                if (Accion == "Insertar")
+                {
+                    return View("FormTrabajador");
+                }
+
+                return View("FormTrabajador");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
+
+
+
+
     }
 }

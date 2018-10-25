@@ -293,6 +293,8 @@
     <Content Include="Views\BackOffice\ABM_Categorias.cshtml" />
     <Content Include="Views\BackOffice\FormTrabajador.cshtml" />
     <Content Include="Views\Home\Perfil.cshtml" />
+    <Content Include="Views\BackOffice\ABM_Personajes.cshtml" />
+    <Content Include="Views\BackOffice\FormPersonaje.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

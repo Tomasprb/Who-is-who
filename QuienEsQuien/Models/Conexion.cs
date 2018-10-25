@@ -71,7 +71,7 @@ namespace QuienesQuien.Models
 
             return x;
         }
-        ///ABM
+        ///ABM CATEGORIA
         public void InsertarCategoria(Categorias C)
         {
 
@@ -150,9 +150,25 @@ namespace QuienesQuien.Models
 
         }
 
+    
+        // ABM PERSONAJES
+        public void InsertarPersonaje(Personajes P)
+        {
+
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "sp_AltaPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pNombre", P.Nombre);
+            consulta.Parameters.AddWithValue("@pImagen", P.Imagen);
+            consulta.Parameters.AddWithValue("@pCategoria", P.IdCategoria);
+            consulta.ExecuteNonQuery();
+            Desconectar(Conexion);
+
+        }
         public List<Personajes> ListarPersonajes()
         {
-            List<Personajes> Personajes = new List<Personajes>();
+            List<Personajes> ListaPersonjaes = new List<Personajes>();
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_ListarPersonajes";
@@ -161,15 +177,75 @@ namespace QuienesQuien.Models
             while (dataReader.Read())
             {
                 int IdPersonaje = Convert.ToInt32(dataReader["IdPersonajes"]);
-                string NombreCat = (dataReader["Nombre_personaje"].ToString());
+                string NombrePer = (dataReader["Nombre_personaje"].ToString());
                 string Imagen = (dataReader["Imagen"].ToString());
-                int IdCategotia = Convert.ToInt32(dataReader["IdCategoria"]);
-
-                Personajes C = new Personajes(IdPersonaje, NombreCat, Imagen, IdCategotia);
-                Personajes.Add(C);
+                int IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
+                Personajes P = new Personajes(IdPersonaje, NombrePer, Imagen, IdCategoria);
+                ListaPersonjaes.Add(P);
             }
             Desconectar(conexion);
-            return Personajes;
+            return ListaPersonjaes;
         }
+        public Personajes ObtenerPersonaje(int IdPersonaje)
+        {
+            Personajes MiPersonaje = new Personajes();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_SeleccionarPersonaje";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", IdPersonaje);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            if (dataReader.Read())
+            {
+                MiPersonaje.IdPersonaje = Convert.ToInt32(dataReader["IdPersonajes"]);
+                MiPersonaje.Nombre= (dataReader["Nombre_personaje"].ToString());
+                MiPersonaje.Imagen = (dataReader["Imagen"].ToString());
+                MiPersonaje.IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
+
+            }
+
+            Desconectar(conexion);
+            return MiPersonaje;
+        }
+        public void ModificarPersonaje(Personajes P)
+        {
+
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificacionPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", P.IdPersonaje);
+            consulta.Parameters.AddWithValue("@pNombre", P.Nombre);
+            consulta.Parameters.AddWithValue("@pImagen", P.Imagen);
+            consulta.Parameters.AddWithValue("@pCategoria", P.IdCategoria);
+            consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+
+        }
+
+        public void EliminarPersonaje(int t)
+        {
+
+
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_BajaPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", t);
+            consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+
+        }
+
+       
+
+
+
+
+
     }
+
+
+
+
 }
