@@ -9,12 +9,14 @@ namespace QuienEsQuien.Models
     {
         private string _Nombre;
         private bool _Admin;
+        private string _Contraseña;
      
 
-        public Login(string Nombre, bool Admin)
+        public Login(string Nombre, bool Admin, string Contraseña)
         {
             _Nombre = Nombre;
             _Admin = Admin;
+            _Contraseña = Contraseña;
         }
 
         public Login()
@@ -47,7 +49,17 @@ namespace QuienEsQuien.Models
             }
         }
        
-
+        public string Contraseña
+        {
+            get
+            {
+                return _Contraseña;
+            }
+            set
+            {
+                _Contraseña = value;
+            }
+        }
 
     }
 }

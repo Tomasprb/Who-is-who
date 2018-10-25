@@ -32,22 +32,47 @@ namespace QuienesQuien.Controllers
 
         public ActionResult Login(string Nombre, string Contraseña)
         {
-            Login X = bd.Login(Nombre, Contraseña);
-
-            Session["NombeUser"] = X.Nombre;
-
-            if (X.Nombre != "-1")
+            if (Nombre == "" || Contraseña == "")
             {
-                Session["NombreNow"] = X.Nombre;
-                Session["AdminNow"] = X.Admin;
-                return View("Index");
+                if (Nombre == "")
+                {
+                    ViewBag.NombreNo = "Ingrese un nombre";
+                }
+                if (Contraseña == "")
+                {
+                    ViewBag.ContraseñaNo = "Ingrese una contraseña";
+                }
+                return View("LoginParcial");
             }
             else
             {
-                ViewBag.NoUserLogin = "El usuario ingresado no existe";
-                Session["NombreNow"] = null;
-                Session["AdminNow"] = false;
-                return View("LoginParcial");
+                Login X = bd.Login(Nombre, Contraseña);
+
+                if (X.Nombre != "-1")
+                {
+                    string getHashInputData = GetMD5HashData(Contraseña);
+
+                    if (string.Compare(getHashInputData, storedHashData) == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    //https://stackoverflow.com/questions/8065616/asp-net-hash-password-using-md5
+                    if (X.Contraseña==GetHashCode("MD5", Contraseña))
+                    Session["NombreNow"] = X.Nombre;
+                    Session["AdminNow"] = X.Admin;
+                    return View("Index");
+                }
+                else
+                {
+                    ViewBag.NoUserLogin = "El usuario ingresado no existe";
+                    Session["NombreNow"] = null;
+                    Session["AdminNow"] = false;
+                    return View("LoginParcial");
+                }
             }
         }
 
@@ -81,7 +106,8 @@ namespace QuienesQuien.Controllers
                 }
                 else
                 {
-                    return View("RegisterNo");
+                    ViewBag.UserExiste = "Ese nombre de usuario ya existe";
+                    return View("RegisterParcial");
                 }
             }
         }
