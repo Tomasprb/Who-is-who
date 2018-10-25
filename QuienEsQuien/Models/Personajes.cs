@@ -9,19 +9,20 @@ namespace QuienEsQuien.Models
     {
         private int _IdPersonaje;
         private string _Nombre;
+        private string _Imagen;
         private int _IdCategoria;
-        public Personajes()
+
+        public Personajes(int IdPersonaje, string Nombre, string Imagen, int IdCategoria)
         {
-            IdPersonaje = _IdPersonaje;
-            Nombre = _Nombre;
-            IdCategoria = _IdCategoria;
+            _IdPersonaje = IdPersonaje;
+            _Nombre = Nombre;
+            _Imagen = Imagen;
+            _IdCategoria = IdCategoria;
         }
 
-        public Personajes(int _IdPersonaje, string _Nombre, int _IdCategoria)
+        public Personajes()
         {
-            this._IdPersonaje = _IdPersonaje;
-            this._Nombre = _Nombre;
-            this._IdCategoria = _IdCategoria;
+
         }
 
         public int IdPersonaje
@@ -36,7 +37,6 @@ namespace QuienEsQuien.Models
                 _IdPersonaje = value;
             }
         }
-
         public string Nombre
         {
             get
@@ -49,7 +49,18 @@ namespace QuienEsQuien.Models
                 _Nombre = value;
             }
         }
+        public string Imagen
+        {
+            get
+            {
+                return _Imagen;
+            }
 
+            set
+            {
+                _Imagen = value;
+            }
+        }
         public int IdCategoria
         {
             get

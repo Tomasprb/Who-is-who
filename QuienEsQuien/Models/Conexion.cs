@@ -124,7 +124,7 @@ namespace QuienesQuien.Models
         }
         public void ModificarCategoria(Categorias C)
         {
-
+            
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_ModificacionCategoria";
@@ -138,6 +138,7 @@ namespace QuienesQuien.Models
 
         public void EliminarTrabajador(int t)
         {
+            
 
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
@@ -147,6 +148,28 @@ namespace QuienesQuien.Models
             consulta.ExecuteNonQuery();
             Desconectar(conexion);
 
+        }
+
+        public List<Personajes> ListarPersonajes()
+        {
+            List<Personajes> Personajes = new List<Personajes>();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ListarPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                int IdPersonaje = Convert.ToInt32(dataReader["IdPersonajes"]);
+                string NombreCat = (dataReader["Nombre_personaje"].ToString());
+                string Imagen = (dataReader["Imagen"].ToString());
+                int IdCategotia = Convert.ToInt32(dataReader["IdCategoria"]);
+
+                Personajes C = new Personajes(IdPersonaje, NombreCat, Imagen, IdCategotia);
+                Personajes.Add(C);
+            }
+            Desconectar(conexion);
+            return Personajes;
         }
     }
 }

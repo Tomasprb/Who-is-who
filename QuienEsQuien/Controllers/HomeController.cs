@@ -58,16 +58,31 @@ namespace QuienesQuien.Controllers
 
         public ActionResult Register(string Nombre, string Contraseña)
         {
-            int x = bd.Register(Nombre, Contraseña);
-            if (x == 1)
+            if (Nombre == "" || Contraseña == "")
             {
-                Session["NombreNow"] = Nombre;
-                Session["AdminNow"] = false;
-                return View("RegisterDone");
+                if (Nombre == "")
+                {
+                    ViewBag.NombreNo = "Ingrese un nombre";
+                }
+                if (Contraseña == "")
+                {
+                    ViewBag.ContraseñaNo = "Ingrese una contraseña";
+                }
+                return View("RegisterParcial");
             }
             else
             {
-                return View("RegisterNo");
+                int x = bd.Register(Nombre, Contraseña);
+                if (x == 1)
+                {
+                    Session["NombreNow"] = Nombre;
+                    Session["AdminNow"] = false;
+                    return View("RegisterDone");
+                }
+                else
+                {
+                    return View("RegisterNo");
+                }
             }
         }
 

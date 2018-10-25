@@ -49,6 +49,7 @@ namespace QuienEsQuien.Controllers
         {
             if (Convert.ToBoolean(Session["AdminNow"]) == true)
             {
+                bool x = true;
                 Conexion MiConexion1 = new Conexion();
                 ViewBag.Accion = Accion;
                 if (Accion == "Modificar")
@@ -64,12 +65,25 @@ namespace QuienEsQuien.Controllers
                 }
                 if (Accion == "Eliminar")
                 {
-
-                    MiConexion1.EliminarTrabajador(ID);
-                    List<Categorias> Categoria = new List<Categorias>();
-                    Categoria = MiConexion1.ListarCategorias();
-
-                    ViewBag.Lista = Categoria;
+                    List<Personajes> lista = MiConexion1.ListarPersonajes();
+                    foreach (Personajes miPersonaje in lista)
+                    {
+                        if (miPersonaje.IdCategoria == ID)
+                        {
+                            ViewBag.BajaCategoria = "No se puede eliminar la categoría seleccionada porque uno o más personajes pertenecen a ella";
+                            x = false;
+                            List<Categorias> Categoria = new List<Categorias>();
+                            Categoria = MiConexion1.ListarCategorias();
+                            ViewBag.Lista = Categoria;
+                        }
+                    }
+                    if (x == true)
+                    {
+                        MiConexion1.EliminarTrabajador(ID);
+                        List<Categorias> Categoria = new List<Categorias>();
+                        Categoria = MiConexion1.ListarCategorias();
+                        ViewBag.Lista = Categoria;
+                    }
                     return View("ABM_Categorias");
                 }
                 if (Accion == "Insertar")
@@ -85,7 +99,7 @@ namespace QuienEsQuien.Controllers
             }
         }
 
-        public ActionResult CosasATrabajador (Categorias x, string Accion, int Id = 0)
+        public ActionResult CosasATrabajador(Categorias x, string Accion, int Id = 0)
         {
             x.IdCategoria = Id;
             if (Convert.ToBoolean(Session["AdminNow"]) == true)
@@ -104,8 +118,6 @@ namespace QuienEsQuien.Controllers
 
                 ViewBag.Lista = MiCateforia;
                 return View("ABM_Categorias");
-
-
             }
             else
             {
@@ -113,4 +125,4 @@ namespace QuienEsQuien.Controllers
             }
         }
     }
-    }
+}
