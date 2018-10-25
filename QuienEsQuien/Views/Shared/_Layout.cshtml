@@ -9,10 +9,7 @@
     <link href="~/Content/Cosa.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- Icon Bar (Sidebar - hidden on small screens) -->
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-        <!-- Avatar image in top left corner -->
-        <img src="/w3images/avatar_smoke.jpg" style="width:100%">
         <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
             <image src="~/Content/Layoutbuttons/homepic.png" class="fa w3-xxlarge" style="width:40px"></image>
             <p>HOME</p>
@@ -48,6 +45,10 @@
         }
         else
         {
+            <a style="position:absolute;bottom:110px" href="@Url.Action("Perfil", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <image src="~/Content/Layoutbuttons/userpic.png" class="fa w3-xxlarge" style="width:40px"></image>
+                <p>@Session["NombreNow"]</p>
+            </a>
             <a style="position:absolute;bottom:10px" href="@Url.Action("Logout", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
                 <image src="~/Content/Layoutbuttons/logoutpic.png" class="fa w3-xxlarge" style="width:40px"></image>
                 <p>LOGOUT</p>

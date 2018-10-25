@@ -11,30 +11,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/Cosa.css" rel="stylesheet" />
-    <style>
-        ul {
-            display: inline-block;
-            vertical-align: top;
-            padding-left: 0;
-            vertical-align: top;
-            padding-left: 170px;
-        }
-        li{
-            list-style: none
-        }
-    </style>
+    <link href="~/Styles/Buttons.css" rel="stylesheet" />
 </head>
 <body class="w3-black">
     <div class="w3-padding-large" id="main">
         <h1 align="center">Menu de administrador</h1> <br />
         <div style="width:100%;margin-left:auto;margin-right:auto;margin-top:25px">
-            <ul >
-                <li style="text-align:center;font-size:20px"><b>Usuarios ▼</b></li>
-                <li><a class="link-abm" href="@Url.Action("Categorias", "BackOffice")">ABM Categorias</a></li>
-                <li><a class="link-abm" href="@Url.Action("BajaUsuarios", "BackOffice")">ABM Usuarios</a></li>
-                <li><a class="link-abm" href="@Url.Action("ModificacionUsuarios", "BackOffice")">ABM Personajes</a></li>
-            </ul>
-            
+            <form action="@Url.Action("Usuarios", "BackOffice")">
+                <center><button class="button black" style="width:250px;height:45px;font-size:18px;margin-bottom:20px">Usuarios</button></center>
+            </form>
+            <form action="@Url.Action("Categorias", "BackOffice")">
+                <center><button class="button black" style="width:250px;height:45px;font-size:18px;margin-bottom:20px">Categorías</button></center>
+            </form>
+            <form action="@Url.Action("Preguntas", "BackOffice")">
+                <center><button class="button black" style="width:250px;height:45px;font-size:18px;margin-bottom:20px">Preguntas</button></center>
+            </form>
+            <form action="@Url.Action("Personajes", "BackOffice")">
+                <center><button class="button black" style="width:250px;height:45px;font-size:18px;margin-bottom:20px">Personajes</button></center>
+            </form>
         </div>
     </div>
 </body>

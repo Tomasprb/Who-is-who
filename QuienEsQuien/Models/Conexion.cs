@@ -10,8 +10,8 @@ namespace QuienesQuien.Models
 {
     public class Conexion
     {
-        private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
-        // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
+        //private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
+        private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
 
         public SqlConnection Conectar()
         {
@@ -64,7 +64,7 @@ namespace QuienesQuien.Models
             Comando.CommandText = "sp_Registro";
             Comando.CommandType = System.Data.CommandType.StoredProcedure;
             Comando.Parameters.AddWithValue("@pNombre", user);
-            Comando.Parameters.AddWithValue("@pContraseña", pass);
+            Comando.Parameters.AddWithValue("@pPass", pass);
             int x = Comando.ExecuteNonQuery();
 
             Conexion.Close();

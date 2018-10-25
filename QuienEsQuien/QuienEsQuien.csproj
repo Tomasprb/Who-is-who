@@ -290,11 +290,9 @@
     <Content Include="Views\Home\RegisterNo.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Game\Index.cshtml" />
-    <Content Include="Views\BackOffice\AltaCategorias.cshtml" />
-    <Content Include="Views\BackOffice\BajaCategorias.cshtml" />
-    <Content Include="Views\BackOffice\ModificacionCategorias.cshtml" />
     <Content Include="Views\BackOffice\ABM_Categorias.cshtml" />
     <Content Include="Views\BackOffice\FormTrabajador.cshtml" />
+    <Content Include="Views\Home\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

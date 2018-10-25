@@ -61,9 +61,8 @@ namespace QuienesQuien.Controllers
             int x = bd.Register(Nombre, Contraseña);
             if (x == 1)
             {
-                Login f = new Login(Nombre, false);
-                Session["NombreNow"] = f.Nombre;
-                Session["AdminNow"] = f.Admin;
+                Session["NombreNow"] = Nombre;
+                Session["AdminNow"] = false;
                 return View("RegisterDone");
             }
             else
@@ -78,6 +77,11 @@ namespace QuienesQuien.Controllers
             Session["AdminNow"] = false;
 
             return View("Index");
+        }
+
+        public ActionResult Perfil()
+        {
+            return View();
         }
     }
 }
