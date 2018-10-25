@@ -287,7 +287,6 @@
     <Content Include="Views\Home\LoginParcial.cshtml" />
     <Content Include="Views\Home\RegisterParcial.cshtml" />
     <Content Include="Views\Home\RegisterDone.cshtml" />
-    <Content Include="Views\Home\RegisterNo.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\BackOffice\ABM_Categorias.cshtml" />

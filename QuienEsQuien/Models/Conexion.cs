@@ -41,14 +41,17 @@ namespace QuienesQuien.Models
             if (DataReader.Read())
             {
                 bool Admin = Convert.ToBoolean(DataReader["Admin"]);
+                string Contraseñat = DataReader["Contraseña"].ToString();
 
                 x.Nombre = user;
                 x.Admin = Admin;
+                x.Contraseña = Contraseñat;
             }
             else
             {
                 x.Nombre = "-1";
                 x.Admin = false;
+                x.Contraseña = "-1";
             }
 
             Conexion.Close();
@@ -96,14 +99,14 @@ namespace QuienesQuien.Models
             {
                 int IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
                 string NombreCat = (dataReader["Nombre"].ToString());
-                
-                Categorias C = new Categorias (IdCategoria, NombreCat);
+
+                Categorias C = new Categorias(IdCategoria, NombreCat);
                 Categoria.Add(C);
             }
             Desconectar(conexion);
             return Categoria;
         }
-        public Categorias ObtenerCategoria (int IdCategoria)
+        public Categorias ObtenerCategoria(int IdCategoria)
         {
             Categorias UnaCategoria = new Categorias();
             SqlConnection conexion = Conectar();
@@ -116,7 +119,7 @@ namespace QuienesQuien.Models
             {
                 UnaCategoria.IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
                 UnaCategoria.Nombre = (dataReader["Nombre"].ToString());
-                
+
             }
 
             Desconectar(conexion);
@@ -124,7 +127,7 @@ namespace QuienesQuien.Models
         }
         public void ModificarCategoria(Categorias C)
         {
-            
+
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_ModificacionCategoria";
@@ -138,7 +141,7 @@ namespace QuienesQuien.Models
 
         public void EliminarTrabajador(int t)
         {
-            
+
 
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
