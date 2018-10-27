@@ -42,17 +42,20 @@
             @foreach (Categorias MiCategoria in ViewBag.Lista)
             {
 
-                <tr>
-                    <td>
-                        <h3><b>@MiCategoria.Nombre</b></h3>
-                    </td>
-                    <td class="Centrado">
-                        <h3> @Html.ActionLink("M", "EdicionCategoria", "BackOffice", new { Accion = "Modificar", ID = MiCategoria.IdCategoria }, null)</h3>
-                    </td>
-                    <td class="Centrado">
-                        <h3> @Html.ActionLink("E", "EdicionCategoria", "BackOffice", new { Accion = "Eliminar", ID = MiCategoria.IdCategoria }, null)</h3>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <h3><b>@MiCategoria.Nombre</b></h3>
+                </td>
+                <td class="Centrado">
+                    <h3> @Html.ActionLink("M", "EdicionCategoria", "BackOffice", new { Accion = "Modificar", ID = MiCategoria.IdCategoria }, null)</h3>
+                </td>
+                <td class="Centrado">
+                    <h3> @Html.ActionLink("E", "EdicionCategoria", "BackOffice", new { Accion = "Eliminar", ID = MiCategoria.IdCategoria }, null)</h3>
+                </td>
+                <td class="Centrado">
+                    <h3> @Html.ActionLink("V", "EdicionCategoria", "BackOffice", new { Accion = "Ver", ID = MiCategoria.IdCategoria }, null)</h3>
+                </td>
+            </tr>
             }
         </table>
     </div>

@@ -50,22 +50,21 @@ namespace QuienEsQuien.Controllers
             if (Convert.ToBoolean(Session["AdminNow"]) == true)
             {
                 bool x = true;
-                Conexion MiConexion1 = new Conexion();
                 ViewBag.Accion = Accion;
                 if (Accion == "Modificar")
                 {
-                    Categorias C = MiConexion1.ObtenerCategoria(ID);
+                    Categorias C = bd.ObtenerCategoria(ID);
                     ViewBag.Id = ID;
                     return View("FormTrabajador", C);
                 }
                 if (Accion == "Ver")
                 {
-                    Categorias C = MiConexion1.ObtenerCategoria(ID);
+                    Categorias C = bd.ObtenerCategoria(ID);
                     return View("FormTrabajador", C);
                 }
                 if (Accion == "Eliminar")
                 {
-                    List<Personajes> lista = MiConexion1.ListarPersonajes();
+                    List<Personajes> lista = bd.ListarPersonajes();
                     foreach (Personajes miPersonaje in lista)
                     {
                         if (miPersonaje.IdCategoria == ID)
@@ -73,15 +72,15 @@ namespace QuienEsQuien.Controllers
                             ViewBag.BajaCategoria = "No se puede eliminar la categoría seleccionada porque uno o más personajes pertenecen a ella";
                             x = false;
                             List<Categorias> Categoria = new List<Categorias>();
-                            Categoria = MiConexion1.ListarCategorias();
+                            Categoria = bd.ListarCategorias();
                             ViewBag.Lista = Categoria;
                         }
                     }
                     if (x == true)
                     {
-                        MiConexion1.EliminarTrabajador(ID);
+                        bd.EliminarTrabajador(ID);
                         List<Categorias> Categoria = new List<Categorias>();
-                        Categoria = MiConexion1.ListarCategorias();
+                        Categoria = bd.ListarCategorias();
                         ViewBag.Lista = Categoria;
                     }
                     return View("ABM_Categorias");

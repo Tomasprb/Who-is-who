@@ -11,6 +11,7 @@ namespace QuienesQuien.Controllers
     public class HomeController : Controller
     {
         Conexion bd = new Conexion();
+        Encriptar encriptar = new Encriptar();
 
         public ActionResult Index()
         {
@@ -50,27 +51,21 @@ namespace QuienesQuien.Controllers
 
                 if (X.Nombre != "-1")
                 {
-                    string getHashInputData = GetMD5HashData(Contraseña);
-
-                    if (string.Compare(getHashInputData, storedHashData) == 0)
+                    if (encriptar.Crypto(Contraseña) == X.Contraseña)
                     {
-                        return true;
+                        Session["NombreNow"] = Nombre;
+                        Session["AdminNow"] = X.Admin;
+                        return View("Index");
                     }
                     else
                     {
-                        return false;
+                        ViewBag.NoUserLogin = "La contraseña ingresada es incorrecta";
+                        return View("LoginParcial");
                     }
-                    //https://stackoverflow.com/questions/8065616/asp-net-hash-password-using-md5
-                    if (X.Contraseña==GetHashCode("MD5", Contraseña))
-                    Session["NombreNow"] = X.Nombre;
-                    Session["AdminNow"] = X.Admin;
-                    return View("Index");
                 }
                 else
                 {
                     ViewBag.NoUserLogin = "El usuario ingresado no existe";
-                    Session["NombreNow"] = null;
-                    Session["AdminNow"] = false;
                     return View("LoginParcial");
                 }
             }

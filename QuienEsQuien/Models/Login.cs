@@ -48,7 +48,7 @@ namespace QuienEsQuien.Models
                 _Admin = value;
             }
         }
-       
+
         public string Contraseña
         {
             get
@@ -60,6 +60,5 @@ namespace QuienEsQuien.Models
                 _Contraseña = value;
             }
         }
-
     }
 }

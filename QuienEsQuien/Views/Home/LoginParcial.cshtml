@@ -18,8 +18,8 @@
         <h2>Login</h2>
         <form action="@Url.Action("Login", "Home")" method="get">
             @ViewBag.NoUserLogin <br /> <br />
-            <div style="margin-bottom:10px;display:inline-block">Nombre: <span style="margin-left:28px">@Html.TextBoxFor(x => x.Nombre, new { type = "string" })<div style="font-size:10px;color:red" align="center">@ViewBag.NombreNo </div> </span> </div> <br />
-            <div style="display:inline-block">Contraseña: <span style="margin-left:5px">@Html.PasswordFor(x => x.Contraseña, new { type = "password" })<div style="font-size:10px;color:red;margin-left:25px" align="center"> @ViewBag.ContraseñaNo </div></span> </div> <br />
+            <div style="margin-bottom:10px;display:inline-block">Nombre: <span style="margin-left:28px">@Html.TextBoxFor(x => x.Nombre, new { type = "string" })<span style="font-size:10px;color:red;margin-left:5px" align="center">@ViewBag.NombreNo </span> </span> </div> <br />
+            <div>Contraseña: <span style="margin-left:5px">@Html.PasswordFor(x => x.Contraseña, new { type = "password" })<span style="font-size:10px;color:red;margin-left:4px" align="center"> @ViewBag.ContraseñaNo </span></span> </div> <br />
             <button class="button black" style="margin-left:182px">Siguiente</button>
         </form>
 
