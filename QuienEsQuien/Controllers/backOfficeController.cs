@@ -25,6 +25,23 @@ namespace QuienEsQuien.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        //ABM PREGUNTAS
+        public ActionResult Preguntas()
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                List<Preguntas> Preguntas = new List<Preguntas>();
+
+                Preguntas = bd.ListarPreguntas();
+
+                ViewBag.Lista = Preguntas;
+                return View("ABM_Preguntas");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         // ABM CATEGORIAS
 
         public ActionResult Categorias()

@@ -9,16 +9,17 @@ namespace QuienEsQuien.Models
     {
         private int _IdPregunta;
         private string _Texto;
+        private int _IdCategoria;
 
-        public Preguntas(int _IdPregunta, string _Texto)
+        public Preguntas(int _IdPregunta, string _Texto, int _IdCategoria)
         {
             this._IdPregunta = _IdPregunta;
             this._Texto = _Texto;
+            this._IdCategoria = _IdCategoria;
         }
         public Preguntas()
         {
-            IdPregunta = _IdPregunta;
-            Texto = _Texto;
+
         }
 
         public int IdPregunta
@@ -44,6 +45,19 @@ namespace QuienEsQuien.Models
             set
             {
                 _Texto = value;
+            }
+        }
+
+        public int IdCategoria
+        {
+            get
+            {
+                return _IdCategoria;
+            }
+
+            set
+            {
+                _IdCategoria = value;
             }
         }
     }
