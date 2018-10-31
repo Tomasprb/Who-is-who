@@ -10,8 +10,8 @@ namespace QuienesQuien.Models
 {
     public class Conexion
     {
-        //private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
-        private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
+        private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
+        // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
 
         Encriptar encriptar = new Encriptar();
 
@@ -37,7 +37,6 @@ namespace QuienesQuien.Models
             Comando.CommandText = "sp_Login";
             Comando.CommandType = System.Data.CommandType.StoredProcedure;
             Comando.Parameters.AddWithValue("@pUser", user);
-            Comando.Parameters.AddWithValue("@pPass", pass);
             SqlDataReader DataReader = Comando.ExecuteReader();
 
             if (DataReader.Read())
