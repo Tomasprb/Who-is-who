@@ -1,8 +1,6 @@
 ﻿@using QuienEsQuien.Models
 @{
-                /**/
-
-                ViewBag.Title = "ABM_Categorias";
+    ViewBag.Title = "ABM_Preguntas";
 }
 <head>
     <link href="~/Styles/Estilos1.css" rel="stylesheet" />
@@ -34,27 +32,27 @@
 <body class="w3-black">
     <div class="w3-padding-large" id="main">
 
-        <h2>ABM_Categorias</h2>
+        <h2>ABM_Preguntas</h2>
 
         <h2>ABM</h2>
-        <p>@ViewBag.BajaCategoria</p>
-        <h3>@Html.ActionLink("Ingresar Categoria", "EdicionCategoria", "BackOffice", new { Accion = "Insertar" }, null)</h3>
+        <p>@ViewBag.BajaPreguntas</p>
+        <h3>@Html.ActionLink("Ingresar Pregunta", "Edicion Pregunta", "BackOffice", new { Accion = "Insertar" }, null)</h3>
 
         <table align="center" bordercolor="Black" width="350px">
-            @foreach (Categorias MiCategoria in ViewBag.Lista)
+            @foreach (Preguntas MiPregunta in ViewBag.Lista)
             {
                 <tr>
                     <td>
-                        <h3><b>@MiCategoria.Nombre</b></h3>
+                        <h3><b>@MiPregunta.Texto</b></h3>
                     </td>
                     <td class="Centrado">
-                        <h3> @Html.ActionLink("M", "EdicionCategoria", "BackOffice", new { Accion = "Modificar", ID = MiCategoria.IdCategoria }, null)</h3>
+                        <h3> @Html.ActionLink("M", "EdicionPregunta", "BackOffice", new { Accion = "Modificar", ID = MiPregunta.IdPregunta }, null)</h3>
                     </td>
                     <td class="Centrado">
-                        <h3> @Html.ActionLink("E", "EdicionCategoria", "BackOffice", new { Accion = "Eliminar", ID = MiCategoria.IdCategoria }, null)</h3>
+                        <h3> @Html.ActionLink("E", "EdicionPregunta", "BackOffice", new { Accion = "Eliminar", ID = MiPregunta.IdPregunta }, null)</h3>
                     </td>
                     <td class="Centrado">
-                        <h3> @Html.ActionLink("V", "EdicionCategoria", "BackOffice", new { Accion = "Ver", ID = MiCategoria.IdCategoria }, null)</h3>
+                        <h3> @Html.ActionLink("V", "EdicionPregunta", "BackOffice", new { Accion = "Ver", ID = MiPregunta.IdPregunta }, null)</h3>
                     </td>
                 </tr>
             }
