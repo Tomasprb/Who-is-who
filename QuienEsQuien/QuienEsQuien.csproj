@@ -219,6 +219,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Angel.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Cosa.css" />
@@ -229,6 +230,7 @@
     <Content Include="Content\Layoutbuttons\loginpic.png" />
     <Content Include="Content\Layoutbuttons\logoutpic.png" />
     <Content Include="Content\Layoutbuttons\registerpic.png" />
+    <Content Include="Content\Minnie.jpg" />
     <Content Include="Styles\Buttons.css" />
     <Content Include="Styles\Estilos1.css" />
     <Content Include="favicon.ico" />

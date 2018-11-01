@@ -16,19 +16,27 @@
 <body class="w3-black">
     <div class="w3-padding-large" id="main">
         <h2>Edite Las casillas a su gusto </h2>
-       
+
 
 
         @using (Html.BeginForm("CosasATrabajadorPersonaje", "BackOffice", FormMethod.Post))
         {
             if (ViewBag.Accion == "Ver")
+
             {
+                <img src="~/Content/@ViewBag.Imagen" alt="Foto Personaje" class="img-rounded" />
                 <pr>Nombre</pr> @Html.TextBoxFor(x => x.Nombre, new { disabled = "disabled" }) <br />
                 <pr>Imagen</pr> @Html.TextBoxFor(x => x.Nombre, new { disabled = "disabled", type = "file" }) <br />
+                @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.Categorias, "IdCategoria", "Nombre", new { disabled = "disabled" }))
             }
             else
             {
+
+                <img src="~/Content/@ViewBag.Imagen" alt="Foto Personaje" class="img-rounded" />
                 <pr>Nombre</pr> @Html.TextBoxFor(x => x.Nombre) <br />
+                <pr>Imagen</pr> @Html.TextBoxFor(x => x.Imagen, new { type = "file" }) <br />
+                @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.Categorias, "IdCategoria", "Nombre"))
+
             }
             <input type="hidden" name="Accion" value=@ViewBag.Accion>
             <input type="hidden" name="Id" value=@ViewBag.Id>

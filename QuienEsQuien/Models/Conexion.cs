@@ -11,7 +11,10 @@ namespace QuienesQuien.Models
     public class Conexion
     {
         private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
-        //private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
+
+        // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
+
+       // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;"; a685389e155591274e7f758a3e389a8b5a726026;
 
         Encriptar encriptar = new Encriptar();
 

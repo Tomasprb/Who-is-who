@@ -169,15 +169,22 @@ namespace QuienEsQuien.Controllers
                 bool x = true;
                 Conexion MiConexion1 = new Conexion();
                 ViewBag.Accion = Accion;
+                List<Categorias> listaCategorias = new List<Categorias>();
+                listaCategorias = MiConexion1.ListarCategorias();
+                ViewBag.Categorias = listaCategorias;
+                
+
                 if (Accion == "Modificar")
                 {
                     Personajes C = MiConexion1.ObtenerPersonaje(ID);
                     ViewBag.Id = ID;
+                    ViewBag.Imagen = C.Imagen;
                     return View("FormPersonaje", C);
                 }
                 if (Accion == "Ver")
                 {
                     Personajes C = MiConexion1.ObtenerPersonaje(ID);
+                    ViewBag.Imagen = C.Imagen;
                     return View("FormPersonaje", C);
                 }
                 if (Accion == "Eliminar")
@@ -205,10 +212,10 @@ namespace QuienEsQuien.Controllers
                 }
                 if (Accion == "Insertar")
                 {
-                    return View("FormTrabajador");
+                    return View("FormPersonaje");
                 }
 
-                return View("FormTrabajador");
+                return View("FormPersonaje");
             }
             else
             {
@@ -221,5 +228,8 @@ namespace QuienEsQuien.Controllers
 
 
 
+
+
     }
-}
+    }
+
