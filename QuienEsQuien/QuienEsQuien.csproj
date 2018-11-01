@@ -298,6 +298,7 @@
     <Content Include="Views\BackOffice\ABM_Personajes.cshtml" />
     <Content Include="Views\BackOffice\FormPersonaje.cshtml" />
     <Content Include="Views\BackOffice\ABM_Preguntas.cshtml" />
+    <Content Include="Views\BackOffice\FinPregunta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
