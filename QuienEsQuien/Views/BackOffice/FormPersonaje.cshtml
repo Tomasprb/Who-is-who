@@ -22,14 +22,16 @@
         @using (Html.BeginForm("CosasATrabajadorPersonaje", "BackOffice", FormMethod.Post))
         {
             if (ViewBag.Accion == "Ver")
+
             {
+                <img src="~/Content/@ViewBag.Imagen" alt="Foto Personaje" class="img-rounded" />
                 <pr>Nombre</pr> @Html.TextBoxFor(x => x.Nombre, new { disabled = "disabled" }) <br />
                 <pr>Imagen</pr> @Html.TextBoxFor(x => x.Nombre, new { disabled = "disabled", type = "file" }) <br />
                 @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.Categorias, "IdCategoria", "Nombre", new { disabled = "disabled" }))
             }
             else
             {
-                
+
                 <img src="~/Content/@ViewBag.Imagen" alt="Foto Personaje" class="img-rounded" />
                 <pr>Nombre</pr> @Html.TextBoxFor(x => x.Nombre) <br />
                 <pr>Imagen</pr> @Html.TextBoxFor(x => x.Imagen, new { type = "file" }) <br />
