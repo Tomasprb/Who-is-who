@@ -322,5 +322,92 @@ namespace QuienesQuien.Models
             Desconectar(conexion);
 
         }
+
+        //ABM PREGUNTAS_PERSONAJES (mateo)
+
+        public void InsertarPersonaje_Pregunta(Personajes_Preguntas PP)
+        {
+
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "sp_AltaPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pNombre", P.Nombre);
+            consulta.Parameters.AddWithValue("@pImagen", P.Imagen);
+            consulta.Parameters.AddWithValue("@pCategoria", P.IdCategoria);
+            consulta.ExecuteNonQuery();
+            Desconectar(Conexion);
+
+        }
+        public List<Personajes_Preguntas> ListarPersonajes_Pregunta()
+        {
+            List<Personajes_Preguntas> ListaPersonajes_Pregunta = new List<Personajes_Preguntas>();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ListarPersonajes_pregunta";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                int IdPersonaje = Convert.ToInt32(dataReader["IdPersonaje"]); 
+                int IdPregunta = Convert.ToInt32(dataReader["IdPregunta"]);
+                Personajes_Preguntas PP = new Personajes_Preguntas(IdPersonaje, IdPregunta);
+                ListaPersonajes_Pregunta.Add(PP);
+            }
+            Desconectar(conexion);
+            return ListaPersonajes_Pregunta;
+        }
+        public Personajes ObtenerPersonaje_Pregunta(int IdPersonaje)
+        {
+            Personajes MiPersonaje = new Personajes();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_SeleccionarPersonaje";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", IdPersonaje);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            if (dataReader.Read())
+            {
+                MiPersonaje.IdPersonaje = Convert.ToInt32(dataReader["IdPersonajes"]);
+                MiPersonaje.Nombre = (dataReader["Nombre_personaje"].ToString());
+                MiPersonaje.Imagen = (dataReader["Imagen"].ToString());
+                MiPersonaje.IdCategoria = Convert.ToInt32(dataReader["IdCategoria"]);
+
+            }
+
+            Desconectar(conexion);
+            return MiPersonaje;
+        }
+        public void ModificarPersonaje_Pregunta(Personajes P)
+        {
+
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificacionPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", P.IdPersonaje);
+            consulta.Parameters.AddWithValue("@pNombre", P.Nombre);
+            consulta.Parameters.AddWithValue("@pImagen", P.Imagen);
+            consulta.Parameters.AddWithValue("@pCategoria", P.IdCategoria);
+            consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+
+        }
+
+        public void EliminarPersonaje_Pregunta(int t)
+        {
+
+
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_BajaPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pID", t);
+            consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+
+        }
+
+        //--------------------------------------------------------------------------------
     }
 }

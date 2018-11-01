@@ -141,6 +141,29 @@ namespace QuienEsQuien.Controllers
             }
         }
 
+
+        //ABM REGUNTAS_PERSONAJES
+
+        public ActionResult Personajes_Pregunta()
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                List<Personajes> ListaPersonajes = new List<Personajes>();
+                Conexion MiConexion = new Conexion();
+
+                ListaPersonajes = MiConexion.ListarPersonajes();
+
+                ViewBag.Lista = ListaPersonajes;
+                return View("ABMM_Personajes_Pregunta");
+
+            }//ACA
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        //------------------------------------------------------------
+
         //ABM PERSONAJES
 
         public ActionResult Personajes()
