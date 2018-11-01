@@ -107,9 +107,9 @@ namespace QuienesQuien.Models
             Preguntas UnaPregunta = new Preguntas();
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
-            consulta.CommandText = "sp_SeleccionarPregunta";
+            consulta.CommandText = "sp_SeleccionarPreguntas";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@pID", IdPregunta);
+            consulta.Parameters.AddWithValue("@PIDPregunta", IdPregunta);
             SqlDataReader dataReader = consulta.ExecuteReader();
             if (dataReader.Read())
             {

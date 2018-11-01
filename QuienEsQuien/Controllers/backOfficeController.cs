@@ -42,6 +42,37 @@ namespace QuienEsQuien.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        public ActionResult EdicionPregunta(string Accion, int ID = 0)
+        {
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                ViewBag.Accion = Accion;
+                if (Accion == "Modificar")
+                {
+                    Preguntas P = bd.ObtenerPregunta(ID);
+                    ViewBag.Id = ID;
+                    return View("FinPregunta", P);
+                }
+                if (Accion == "Ver")
+                {
+                    Preguntas P = bd.ObtenerPregunta(ID);
+                    return View("FinPregunta", P);
+                }
+                if (Accion == "Eliminar")
+                {
+                    bd.EliminarPregunta(ID);
+                    List<Preguntas> Categoria = new List<Preguntas>();
+                    Categoria = bd.ListarPreguntas();
+                    ViewBag.Lista = Categoria;
+                    return View("ABM_Preguntas");
+                }
+                return View("ABM_Preguntas");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         // ABM CATEGORIAS
 
         public ActionResult Categorias()
@@ -195,7 +226,7 @@ namespace QuienEsQuien.Controllers
                 List<Categorias> listaCategorias = new List<Categorias>();
                 listaCategorias = MiConexion1.ListarCategorias();
                 ViewBag.Categorias = listaCategorias;
-                
+
 
                 if (Accion == "Modificar")
                 {
@@ -254,5 +285,5 @@ namespace QuienEsQuien.Controllers
 
 
     }
-    }
+}
 
