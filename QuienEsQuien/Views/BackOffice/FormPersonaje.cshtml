@@ -19,7 +19,7 @@
 
 
 
-        @using (Html.BeginForm("CosasATrabajadorPersonaje", "BackOffice", FormMethod.Post))
+        @using (Html.BeginForm("CosasAPersonaje", "BackOffice", FormMethod.Post))
         {
             if (ViewBag.Accion == "Ver")
 
@@ -38,8 +38,10 @@
                 @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.Categorias, "IdCategoria", "Nombre"))
 
             }
+          
             <input type="hidden" name="Accion" value=@ViewBag.Accion>
             <input type="hidden" name="Id" value=@ViewBag.Id>
+            <input type="hidden" name="Imagen" value=@ViewBag.Imagen>
             <input type="submit" value="Enviar" />
         }
 

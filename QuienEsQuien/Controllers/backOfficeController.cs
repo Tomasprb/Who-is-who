@@ -176,6 +176,7 @@ namespace QuienEsQuien.Controllers
 
                 if (Accion == "Modificar")
                 {
+
                     Personajes C = MiConexion1.ObtenerPersonaje(ID);
                     ViewBag.Id = ID;
                     ViewBag.Imagen = C.Imagen;
@@ -216,6 +217,34 @@ namespace QuienEsQuien.Controllers
                 }
 
                 return View("FormPersonaje");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult CosasAPersonaje(string Imagen, Personajes x, string Accion, int Id = 0)
+        {
+            x.IdCategoria = Id;
+            if (Convert.ToBoolean(Session["AdminNow"]) == true)
+            {
+                Conexion MiConexion2 = new Conexion();
+                if (Accion == "Insertar")
+                {
+                    MiConexion2.InsertarPersonaje(x);
+                }
+                if (Accion == "Modificar")
+                {
+                    x.Imagen = Imagen;
+                    if (Imagen != x.Imagen)
+                    MiConexion2.ModificarPersonaje(x);
+                }
+                List<Personajes> MiCateforia = new List<Personajes>();
+                MiCateforia = MiConexion2.ListarPersonajes();
+
+                ViewBag.Lista = MiCateforia;
+                return View("ABM_Categorias");
             }
             else
             {
