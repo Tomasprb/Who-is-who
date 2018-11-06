@@ -10,12 +10,12 @@ namespace QuienesQuien.Models
 {
     public class Conexion
     {
-        private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
+       //  private static string SC = "Server=10.128.8.16;Database=QEQB07;User Id=QEQB07;Password=QEQB07;";
 
         // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;";
 
        // private static string SC = "Server=LAPTOP-BT997U35\\SQLEXPRESS;Database=QEQB07;User Id=ORT;Password=ort;"; a685389e155591274e7f758a3e389a8b5a726026;
-
+       
         Encriptar encriptar = new Encriptar();
 
         public SqlConnection Conectar()
@@ -325,20 +325,20 @@ namespace QuienesQuien.Models
 
         //ABM PREGUNTAS_PERSONAJES (mateo)
 
-        public void InsertarPersonaje_Pregunta(Personajes_Preguntas PP)
-        {
+        //public void InsertarPersonaje_Pregunta(Personajes_Preguntas PP)
+        //{
 
-            SqlConnection Conexion = Conectar();
-            SqlCommand consulta = Conexion.CreateCommand();
-            consulta.CommandText = "sp_AltaPersonajes";
-            consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@pNombre", P.Nombre);
-            consulta.Parameters.AddWithValue("@pImagen", P.Imagen);
-            consulta.Parameters.AddWithValue("@pCategoria", P.IdCategoria);
-            consulta.ExecuteNonQuery();
-            Desconectar(Conexion);
+        //    SqlConnection Conexion = Conectar();
+        //    SqlCommand consulta = Conexion.CreateCommand();
+        //    consulta.CommandText = "sp_AltaPersonajes";
+        //    consulta.CommandType = System.Data.CommandType.StoredProcedure;
+        //    consulta.Parameters.AddWithValue("@pNombre", P.Nombre);
+        //    consulta.Parameters.AddWithValue("@pImagen", P.Imagen);
+        //    consulta.Parameters.AddWithValue("@pCategoria", P.IdCategoria);
+        //    consulta.ExecuteNonQuery();
+        //    Desconectar(Conexion);
 
-        }
+        //}
         public List<Personajes_Preguntas> ListarPersonajes_Pregunta()
         {
             List<Personajes_Preguntas> ListaPersonajes_Pregunta = new List<Personajes_Preguntas>();
