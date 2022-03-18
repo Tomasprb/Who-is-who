@@ -1,2 +1,2 @@
-# Who-is-who
-ustedes ya saben lo que es
+# Who-is-who (Prototipo)
+ASP.net (desactualizado e inviable)
