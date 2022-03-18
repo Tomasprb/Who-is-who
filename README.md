@@ -1,2 +1,2 @@
-# Who-is-who (Prototipo)
-ASP.net (desactualizado e inviable)
+# Who-is-who (Version final)
+Creado en ASP.net 
